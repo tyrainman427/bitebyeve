@@ -13,13 +13,20 @@ img.card-img {
   background-color: black;
   color: white;
 }
+.jumbo-img {
+  background-color:white;
+  width: 40%;
+  height: 40%;
+  margin: auto;
+}
 </style>
 
 
-    <div class="jumbotron jumbotron-fluid text-center">
+    <div class="jumbotron jumbotron-fluid jumbo-img text-center">
   <div class="container">
-    <h1 class="display-4 font-weight-bold mt-5">Bite</h1>
-    <p class="lead font-weight-bold">Healthy Food with a <span style="color:red;">Latin</span> Flair</p>
+    <!-- <h1 class="display-4 font-weight-bold mt-5">Bite</h1> -->
+    <img src="{% static 'img/logo2.png'%}" class="card-img" alt="...">
+    <!-- <p class="lead font-weight-bold">Healthy Food with a <span style="color:red;">Latin</span> Flair</p> -->
   </div>
 </div>
 
@@ -30,7 +37,7 @@ img.card-img {
     <div class="col-sm-3">
     </div>
     <div class="col-sm-6">
-      <div class="card mb-3" style="max-width: 540px;">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
             <img src="{% static 'img/meal1.jpg'%}" class="card-img" alt="...">
@@ -39,7 +46,7 @@ img.card-img {
             <div class="card-body">
               <h5 class="card-title">Meal #1</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button>Add to Cart</button>
+              <a class="btn btn-primary text-white">Add to Cart</a>
             </div>
           </div>
         </div>
@@ -56,7 +63,7 @@ img.card-img {
     <div class="col-sm-3">
     </div>
     <div class="col-sm-6">
-      <div class="card mb-3" style="max-width: 540px;">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
             <img src="{% static 'img/meal2.jpg'%}" class="card-img" alt="...">
@@ -65,7 +72,7 @@ img.card-img {
             <div class="card-body">
               <h5 class="card-title">Meal #2</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button>Add to Cart</button>
+              <a class="btn btn-primary text-white">Add to Cart</a>
             </div>
           </div>
         </div>
@@ -82,7 +89,7 @@ img.card-img {
     <div class="col-sm-3">
     </div>
     <div class="col-sm-6">
-      <div class="card mb-3" style="max-width: 540px;">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
             <img src="{% static 'img/meal3.jpg'%}" class="card-img" alt="...">
@@ -91,7 +98,7 @@ img.card-img {
             <div class="card-body">
               <h5 class="card-title">Meal #3</h5>
               <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <button>Add to Cart</button>
+              <a class="btn btn-primary text-white">Add to Cart</a>
             </div>
           </div>
         </div>
@@ -104,7 +111,7 @@ img.card-img {
 </div>
 
 <!-- About Us -->
-<section id="about">
+<section id="about" class="shadow p-3 bg-dark rounded">
   <div class="container">
     <h1 class="text-center mt-5">About Us</h1>
     <br>
@@ -118,7 +125,7 @@ img.card-img {
 </section>
 
 <!-- Contact Page -->
-<section>
+<section id="contact" class="mt-5">
   <div class="container">
     <div class="row">
         <style>
@@ -180,7 +187,7 @@ input[type=submit]:hover {
 
 <div class="container">
   <div style="text-align:center">
-    <h2>Contact Us</h2>
+    <h2 class="mt-5">Contact Us</h2>
     <p>Stop by to pick up your orders, or leave us a message:</p>
   </div>
   <div class="row">
@@ -207,9 +214,9 @@ input[type=submit]:hover {
 </section>
 
 <!-- Footer -->
-<section id="about">
+<section id="about" class="shadow p-3 bg-dark rounded">
   <div class="container">
-
+    <h1 class="text-white text-center">Footer</h1>
   </div>
 </section>
 
