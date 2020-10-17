@@ -4,11 +4,9 @@
 {% block body %}
 
 <style>
-img.card-img {
-  height: 100%;
-}
+
 #about {
-  height: 500px;
+  height: 100%;
   width: 100%;
   background-color: black;
   color: white;
@@ -19,14 +17,30 @@ img.card-img {
   height: 40%;
   margin: auto;
 }
+.box-image {
+  height: 100%;
+  width: 100%;
+  border-color: white;
+}
+
 </style>
 
 
-    <div class="jumbotron jumbotron-fluid jumbo-img text-center">
+    <div class="jumbotron jumbotron-fluid jumbo-img text-center bg-white mt-5">
   <div class="container">
-    <!-- <h1 class="display-4 font-weight-bold mt-5">Bite</h1> -->
-    <img src="{% static 'img/logo2.png'%}" class="card-img" alt="...">
-    <!-- <p class="lead font-weight-bold">Healthy Food with a <span style="color:red;">Latin</span> Flair</p> -->
+
+    <img src="{% static 'img/logo2.png'%}" class="box-image" alt="the bite logo">
+
+  </div>
+  <div class="container mt-3">
+      <h2 class="text-center">MEAL PICK UPS:</h2>
+      <h4 class="text-center">SUNDAY 12-2PM</h4>
+      <small><p class="text-center">All orders must be received by Thursday 8PM</p></small>
+
+      <p class="text-center">58 Wright Road</p>
+      <p class="text-center">Wethersfield, CT</p>
+      <p class="text-center">860-982-5537</p>
+
   </div>
 </div>
 
@@ -45,7 +59,8 @@ img.card-img {
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">Meal #1</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text">SAUSAGE & APPLE STUFFED ACORD SQUASH</p>
+                <p>(stuffing includes: seasoned sauage, onion, peppers, apples and celery)</p>
               <a class="btn btn-primary text-white">Add to Cart</a>
             </div>
           </div>
@@ -110,17 +125,46 @@ img.card-img {
   </div>
 </div>
 
+<h1 class="text-center">VEGETARIAN OPTION</h1>
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/meal2.jpg'%}" class="card-img" alt="Second meal">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Vegetarian Option 1</h5>
+              <p class="card-text">MASHED CALIFLOWER W/ GARLIC GREENBEANS & ACORN SQUASH</p>
+              <a class="btn btn-primary text-white">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
+</div>
+
+
 <!-- About Us -->
-<section id="about" class="shadow p-3 bg-dark rounded">
+<section id="about" class="shadow pb-1 bg-dark rounded">
   <div class="container">
-    <h1 class="text-center mt-5">About Us</h1>
+    <h1 class="text-center mt-5">WHOLE 30 MENU</h1>
     <br>
-    <h3>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-       Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-       dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-        sunt in culpa qui officia deserunt mollit anim id est laborum."</h3>
+    <h3 class="text-center">PRICE PER MEAL $10.00 * Includes containers</h3>
+    <br>
+    <h5 class="text-center">FOOD ALLERGY ALERT:</h5>
+    <h5 class="text-center">It is your responsibility to disclose any food allergies.</h5>
+    <br>
+    <h5 class="text-center">DISCLOSURE:</h5>
+    <h5 class="text-center">Many fresh herbs and spices are used in meal preparations.</h5>
   </div>
 </section>
 
@@ -185,7 +229,7 @@ input[type=submit]:hover {
 }
 </style>
 
-<div class="container">
+<div class="container bg-light">
   <div style="text-align:center">
     <h2 class="mt-5">Contact Us</h2>
     <p>Stop by to pick up your orders, or leave us a message:</p>
@@ -214,10 +258,8 @@ input[type=submit]:hover {
 </section>
 
 <!-- Footer -->
-<section id="about" class="shadow p-3 bg-dark rounded">
-  <div class="container">
-    <h1 class="text-white text-center">Footer</h1>
-  </div>
+<section id="footer" class="shadow p-3 bg-white rounded">
+  {% include 'menu/footer.html' %}
 </section>
 
 {% endblock %}
