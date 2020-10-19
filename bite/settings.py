@@ -83,8 +83,10 @@ WSGI_APPLICATION = 'bite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'd7n9e5jts22v5o',
+        'USER': 'kbcxcjarjltxsu',
+        'PASSWORD': '12525d8ba93b8591b50c01d2804ae06f5a538b375891649a689fd7d23eaf111f',
     }
 }
 
