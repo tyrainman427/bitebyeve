@@ -30,7 +30,6 @@ class Product(models.Model):
     created_at = models.DateTimeField(default=datetime.now)
     add_on = models.BooleanField(default=False)
     addOn_details = models.CharField(max_length=200, blank=True, null=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     ADDON_AMOUNT = 2.00
 
