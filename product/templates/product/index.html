@@ -1,0 +1,265 @@
+{% extends 'menu/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<style>
+
+#about {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+.jumbo-img {
+  background-color:white;
+  width: 40%;
+  height: 40%;
+  margin: auto;
+}
+.box-image {
+  height: 100%;
+  width: 100%;
+  border-color: white;
+}
+
+</style>
+
+
+    <div class="jumbotron jumbotron-fluid jumbo-img text-center bg-white mt-5">
+  <div class="container">
+
+    <img src="{% static 'img/logo2.png'%}" class="box-image" alt="the bite logo">
+
+  </div>
+  <div class="container mt-3">
+      <h2 class="text-center">MEAL PICK UPS:</h2>
+      <h4 class="text-center">SUNDAY 12-2PM</h4>
+      <small><p class="text-center">All orders must be received by Thursday 8PM</p></small>
+
+      <p class="text-center">58 Wright Road</p>
+      <p class="text-center">Wethersfield, CT</p>
+      <p class="text-center">860-982-5537</p>
+
+  </div>
+</div>
+
+<h1 class="text-center mb-5">This Week's Menu</h1>
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/meal1.jpg'%}" class="box-image" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Meal #1</h5>
+                <p class="card-text">SAUSAGE & APPLE STUFFED ACORD SQUASH</p>
+                <p>(stuffing includes: seasoned sauage, onion, peppers, apples and celery)</p>
+              <a class="btn btn-primary text-white">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/meal2.jpg'%}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Meal #2</h5>
+              <p class="card-text">SOUTHWEST CHICKEN & CAULIFLOWER RICE SOUP</p>
+              <a class="btn btn-primary text-white">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
+</div>
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/meal3.jpg'%}" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Meal #3</h5>
+              <p class="card-text">BALSAMIC ROASTED BRUSSELL SPROUTS W/ PORK BELLY & GARLIC MASHED CAULIFLOWER</p>
+              <a class="btn btn-primary text-white">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
+</div>
+
+<h1 class="text-center">VEGETARIAN OPTION</h1>
+<div class="container mb-5">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/meal2.jpg'%}" class="card-img" alt="Second meal">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Vegetarian Option 1</h5>
+              <p class="card-text">MASHED CALIFLOWER W/ GARLIC GREENBEANS & ACORN SQUASH</p>
+              <a class="btn btn-primary text-white">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
+</div>
+
+
+<!-- About Us -->
+<section id="about" class="shadow pb-1 bg-dark rounded">
+  <div class="container">
+    <h1 class="text-center mt-5">WHOLE 30 MENU</h1>
+    <br>
+    <h3 class="text-center">PRICE PER MEAL $10.00 * Includes containers</h3>
+    <br>
+    <h5 class="text-center">FOOD ALLERGY ALERT:</h5>
+    <h5 class="text-center">It is your responsibility to disclose any food allergies.</h5>
+    <br>
+    <h5 class="text-center">DISCLOSURE:</h5>
+    <h5 class="text-center">Many fresh herbs and spices are used in meal preparations.</h5>
+  </div>
+</section>
+
+<!-- Contact Page -->
+<section id="contact" class="mt-5">
+  <div class="container">
+    <div class="row">
+        <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style inputs */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Style the container/contact section */
+.container {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+
+<div class="container bg-light">
+  <div style="text-align:center">
+    <h2 class="mt-5">Contact Us</h2>
+    <p>Stop by to pick up your orders, or leave us a message:</p>
+  </div>
+  <div class="row">
+    <div class="column">
+      <img src="https://www.google.com/maps/vt/data=kdjV6zS32kjKuaPCLVkyVt_5v3FdypZB1R8-oJXWhGE20sWLndgHLAWt9Sqg7Hf2bj5M9tFzN8YzEhhnJPpviieNgAhlKtNgTgGGS_jY99tfGYgsfNEvhYPME84YQRkT7SkUlDdsUWPWcGObRKeL4HqpxSGtotZKEtL6PRgLY_Sd4I1lCo5eJRnhHdDnCWWyLtlilQ0tOuUMVYuzKho5Z2JOeRUWwSmARE6WvV_WyWG9grkt6oLelwXVp0U86gCy" style="width:100%">
+    </div>
+    <div class="column">
+      <form action="/action_page.php">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<section id="footer" class="shadow p-3 bg-white rounded">
+  {% include 'menu/footer.html' %}
+</section>
+
+{% endblock %}

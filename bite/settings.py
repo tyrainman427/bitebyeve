@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
-    'menu',
+    'product',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 ]
+MEDIA_URL = '/img/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/img/')
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

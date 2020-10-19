@@ -1,0 +1,22 @@
+{% extends 'product/base.html' %}
+
+{% block title %} Liste d'articles {% endblock %}
+
+{% block body %}
+
+<div class="container" style="margin-top:100px;">
+  <div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        <!-- Security token -->
+        {% csrf_token %}
+        <!-- Using the formset -->
+        {{ form.as_p }}
+        <input class="btn btn-primary bt-sm" type="submit" value="Submit">
+        <a class="btn btn-secondary" href="{% url 'products:product-list' %}" type="button" name="button">Back</a>
+    </form>
+  </div>
+
+</div>
+
+
+{% endblock %}
