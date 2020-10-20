@@ -9,6 +9,13 @@ DELIVERY = (
     ('Delivery','Delivery'),
 )
 
+MENU = (
+    ('Meal 1','Meal 1'),
+    ('Meal 2','Meal 2'),
+    ('Meal 3','Meal 3'),
+    ('Meal 4','Meal 4'),
+)
+
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200,null=True)
@@ -22,7 +29,7 @@ class Customer(models.Model):
 
 class Product(models.Model):
     """ This the default Product class """
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50,choices=MENU)
     description = models.TextField(max_length=100)
     photo = models.ImageField(blank=True, null=True)
     price_ht = models.FloatField()

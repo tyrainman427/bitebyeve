@@ -1,4 +1,5 @@
 {% extends 'product/base.html' %}
+{% load crispy_forms_tags %}
 
 
 {% block body %}
@@ -9,13 +10,11 @@
         <!-- Security token -->
         {% csrf_token %}
         <!-- Using the formset -->
-        {{ form.as_p }}
+        {{ form|crispy }}
         <input class="btn btn-primary bt-sm" type="submit" value="Submit">
         <a class="btn btn-secondary" href="{% url 'products:product-list' %}" type="button" name="button">Back</a>
     </form>
   </div>
-
 </div>
-
 
 {% endblock %}
