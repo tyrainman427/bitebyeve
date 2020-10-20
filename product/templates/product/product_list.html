@@ -93,7 +93,7 @@
                       {% if item.add_on %}
                       <h3 style="display:inline-block;float:left"> {{ item.price_ttc|floatformat:2 }}</h3>
                       {% else %}
-                      <h3 style="display:inline-block;float:left">Total: ${{item.price_ht|floatformat:2}}</h3>
+                      <h3 style="display:inline-block;float:left">Total: ${{item.price|floatformat:2}}</h3>
                       {% endif %}
                       </div>
                       <div class="modal-footer">

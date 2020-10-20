@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'product',
     'cart',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -139,6 +140,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/img/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/img/')
+CRISPY_TEMPLATE_PACK ='bootstrap4'
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

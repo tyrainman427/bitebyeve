@@ -21,7 +21,7 @@ class ProductListView(ListView):
 class ProductCreateView(CreateView):
     model = Product
     template_name = "product/product_create.html"
-    fields = ['name','description','price_ht','photo']
+    fields = ['name','description','price','photo']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user

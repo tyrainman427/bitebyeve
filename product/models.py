@@ -32,7 +32,7 @@ class Product(models.Model):
     name = models.CharField(max_length=50,choices=MENU)
     description = models.TextField(max_length=100)
     photo = models.ImageField(blank=True, null=True)
-    price_ht = models.FloatField()
+    price = models.FloatField()
     delivery = models.CharField(max_length=10,default='Delivery',choices=DELIVERY)
     created_at = models.DateTimeField(default=datetime.now)
     add_on = models.BooleanField(default=False)
@@ -41,7 +41,7 @@ class Product(models.Model):
     ADDON_AMOUNT = 2.00
 
     def price_ttc(self):
-        return self.price_ht + self.ADDON_AMOUNT
+        return self.price + self.ADDON_AMOUNT
 
     def __str__(self):
         return self.name
