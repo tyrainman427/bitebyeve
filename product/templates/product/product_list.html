@@ -64,7 +64,7 @@
 
                 <div class="card-footer">
                   <a class="btn btn-outline-primary text-primary" data-toggle="modal" data-target="#exampleModal">Place Order</a>
-                  <p style="display:inline-block;float:right">Price: ${{item.price_ht|floatformat:2}}</p>
+                  <p style="display:inline-block;float:right">Price: ${{item.price|floatformat:2}}</p>
                 </div>
 
                 <!-- Modal -->
@@ -90,6 +90,7 @@
                         </div>
                       </div>
                       <br>
+                      <input type="text" name="" value="" placeholder="Add substitution Details">
                       {% if item.add_on %}
                       <h3 style="display:inline-block;float:left"> {{ item.price_ttc|floatformat:2 }}</h3>
                       {% else %}
@@ -98,7 +99,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Add to Cart</button>
+                        <a type="button" href="#" class="btn btn-primary">Add to Cart</a>
                       </div>
                     </div>
                   </div>
@@ -116,6 +117,8 @@
 </div>
 
 <h1 class="text-center">VEGETARIAN OPTION</h1>
+{% for item in object_list %}
+{% if item.name == 'VEGETARIAN OPTION' %}
 <div class="container mb-5">
   <div class="row">
     <div class="col-sm-3">
@@ -142,6 +145,9 @@
   </div>
 </div>
 
+<!-- <h2 class="text-center mt-3 mb-5">No Vegetarian Meals at this time.</h2> -->
+{% endif %}
+{% endfor %}
 
 <!-- About Us -->
 <section id="about" class="shadow pb-1 bg-dark rounded">

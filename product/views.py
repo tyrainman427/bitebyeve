@@ -13,6 +13,10 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = "product/product_detail.html"
 
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Product, id=id_)
+
 class ProductListView(ListView):
     model = Product
     queryset = Product.objects.all()
@@ -40,6 +44,10 @@ class ProductDeleteView(DeleteView):
 class CustomerDetailView(DetailView):
     model = Customer
     template_name = "product/userprofile_detail.html"
+
+    def get_object(self):
+        id_ = self.kwargs.get("id")
+        return get_object_or_404(Customer, id=id_)
 
 class CustomerListView(ListView):
     model = Customer

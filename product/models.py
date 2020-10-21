@@ -14,6 +14,7 @@ MENU = (
     ('Meal 2','Meal 2'),
     ('Meal 3','Meal 3'),
     ('Meal 4','Meal 4'),
+    ('VEGETARIAN OPTION','VEGETARIAN OPTION'),
 )
 
 class Customer(models.Model):
