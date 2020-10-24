@@ -47,6 +47,14 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def imageURL(self):
+    	try:
+    	    url = self.photo.url
+    	except:
+    		url = 'img/meal1.jpg'
+    	return url
+
     def get_absolute_url(self):
         return reverse("products:product_detail", kwargs={"pk": self.pk})
 
@@ -54,16 +62,40 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True,blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False)
-    transaction_id = models.CharField(max_length=100,null=True)
+    transaction_id = models.IntegerField()
 
     def __str__(self):
-        return self.id
+        return f"{self.id}"
+
+    @property
+    def get_cart_subtotal(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        return total
+
+    @property
+    def get_cart_item(self):
+        orderitems = self.orderitem_set.all()
+        total = OrderItem.objects.annotate(Count('quantity')) #sum([item.quantity for item in orderitems])
+        return total
+
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitem_set.all()
+        total = sum([item.get_total for item in orderitems])
+        full_total = total + 5
+        return full_total
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True,blank=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True,blank=True)
     quantity = models.IntegerField(default=0,null=True,blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_total(self):
+        total = self.product.price * self.quantity
+        return total
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True,blank=True)

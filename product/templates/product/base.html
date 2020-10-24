@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/46dfad2a30.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
     <title>Bite</title>
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/5f9c78eae5e7a74218fbe1d2b/b143c9dadbe8a4e5000360e97.js");</script>
   </head>
 
   <body>
@@ -35,7 +36,7 @@
         <a class="nav-link text-light" href="#">Login</a>
       </li>
       <li class="nav-item">
-        <a href="/cart/" type="button"><i class="nav-link text-light fas fa-shopping-cart"></i></a>
+        <a href="/cart/" type="button"><i class="nav-link text-light fas fa-shopping-cart"><span class="badge badge-danger">{{cartCount.count}}</span></i></a>
       </li>
     </ul>
   </div>

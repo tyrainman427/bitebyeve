@@ -3,6 +3,28 @@
 
 {% block body %}
 
+<script type="text/javascript">
+$(document).on('click','.delete-company',function(){
+  var id = $(this).data('id');
+
+  $.ajax({
+      url:'/catalog/product-detail/',
+      type:'POST',
+      data:{
+          'id':id,
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success:function(data){
+          $('#modalQuickView .modal-dialog').html($('#modalQuickView .modal-dialog',data));
+          $('#modalQuickView').modal('show');
+      },
+      error:function(){
+          console.log('error')
+      },
+  });
+});
+</script>
+
 <style>
 
 #about {
@@ -55,7 +77,7 @@
       <div class="card shadow p-3 bg-white rounded mb-5" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src={{item.photo.url}} class="box-image" alt="image of the meal">
+            <img src="{{item.imageURL}}" class="box-image" alt="image of the meal">
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -63,12 +85,12 @@
                 <p class="card-text">{{item.description}}</p>
 
                 <div class="card-footer">
-                  <a class="btn btn-outline-primary text-primary" data-toggle="modal" data-target="#exampleModal">Place Order</a>
+                  <a class="btn btn-outline-primary text-primary" data-toggle="modal" href="#{{item.id}}" data-target="#test">Place Order</a>
                   <p style="display:inline-block;float:right">Price: ${{item.price|floatformat:2}}</p>
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -78,7 +100,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <img src={{item.photo.url}} class="card-img" alt="image of the meal">
+                        <img src="{% static 'img/meal1.jpg' %}" class="card-img" alt="image of the meal">
                         <p>Meal contains:</p>
                         <p>{{item.description}}</p>
                         <div class="input-group mt-2">

@@ -1,9 +1,13 @@
 from django.urls import path, include
 
-from cart.views import CreateCartItem,ListCart,DetailCart,CreateCart,Updatecart,DeleteCart, ListCartItem,DetailCartItem, UpdateCartItem,DeleteCartItem
+from cart.views import *
+
+app_name = "cart"
 
 # Cart Urls
 urlpatterns = [
+    path('', cart, name='cart'),
+    path('checkout/', checkout, name='checkout'),
     path('<int:pk>/cart/', ListCart, name='list-carts'),
     path('cart/<int:pk>/', DetailCart.as_view(), name='detail-cart'),
     path('cart/create/', CreateCart.as_view(), name='create-cart'),
