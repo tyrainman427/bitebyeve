@@ -32,7 +32,7 @@ class Product(models.Model):
     """ This the default Product class """
     name = models.CharField(max_length=50,choices=MENU)
     description = models.TextField(max_length=100)
-    photo = models.ImageField(blank=True, null=True)
+    photo = models.FileField()
     price = models.FloatField()
     delivery = models.CharField(max_length=10,default='Delivery',choices=DELIVERY)
     created_at = models.DateTimeField(default=datetime.now)
@@ -52,7 +52,7 @@ class Product(models.Model):
     	try:
     	    url = self.photo.url
     	except:
-    		url = 'img/meal1.jpg'
+    		url = 'https://bitebyeve.s3.amazonaws.com/static/meal3.jpg'
     	return url
 
     def get_absolute_url(self):
@@ -76,7 +76,7 @@ class Order(models.Model):
     @property
     def get_cart_item(self):
         orderitems = self.orderitem_set.all()
-        total = OrderItem.objects.annotate(Count('quantity')) #sum([item.quantity for item in orderitems])
+        total = sum([item.quantity for item in orderitems])
         return total
 
     @property
