@@ -17,6 +17,7 @@ django-heroku = "*"
 gunicorn = "*"
 Pillow = "*"
 django-crispy-forms ="*"
+decouple = "*"
 
 
 [dev-packages]
