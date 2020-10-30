@@ -18,6 +18,7 @@ gunicorn = "*"
 Pillow = "*"
 django-crispy-forms ="*"
 python-decouple = "*"
+django-storages = "*"
 
 
 [dev-packages]
