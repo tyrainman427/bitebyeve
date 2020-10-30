@@ -30,13 +30,13 @@ class Customer(models.Model):
 
 class Product(models.Model):
     """ This the default Product class """
-    name = models.CharField(max_length=50,choices=MENU)
+    name = models.CharField(max_length=50,choices=MENU, blank=True, null=True)
     description = models.TextField(max_length=100)
     photo = models.FileField()
     price = models.FloatField()
     delivery = models.CharField(max_length=10,default='Delivery',choices=DELIVERY)
     created_at = models.DateTimeField(default=datetime.now)
-    add_on = models.BooleanField(default=False)
+    add_on = models.CharField(max_length=200, blank=True, null=True)
     addOn_details = models.CharField(max_length=200, blank=True, null=True)
 
     ADDON_AMOUNT = 2.00
@@ -52,7 +52,7 @@ class Product(models.Model):
     	try:
     	    url = self.photo.url
     	except:
-    		url = 'https://bitebyeve.s3.amazonaws.com/static/meal3.jpg'
+    		url = ''
     	return url
 
     def get_absolute_url(self):
@@ -62,10 +62,10 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True,blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False)
-    transaction_id = models.IntegerField()
+    transaction_id = models.IntegerField(null=True,blank=True)
 
     def __str__(self):
-        return f"{self.id}"
+        return str(self.id)
 
     @property
     def get_cart_subtotal(self):

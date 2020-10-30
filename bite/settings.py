@@ -13,6 +13,7 @@ import os
 import dj_database_url
 import django_heroku
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'product',
     'cart',
     'crispy_forms',
-     's3direct',
      'storages',
 ]
 
@@ -145,18 +145,17 @@ MEDIA_URL = '/img/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/img/')
 CRISPY_TEMPLATE_PACK ='bootstrap4'
 
-AWS_ACCESS_KEY_ID = 'AKIAQUHVVW2KBTKVX4EH'
-AWS_SECRET_ACCESS_KEY = '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'
+
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_STORAGE_BUCKET_NAME = 'bitebyeve'
 AWS_S3_REGION_NAME = 'us-east-1'
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_ENDPOINT_URL = 'https://s3.amazonaws.com'
 AWS_LOCATION = 'static'
  # aws settings
-    # AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    # AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    # AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+from decouple import config
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
@@ -170,7 +169,6 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 # STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Activate Django-Heroku.

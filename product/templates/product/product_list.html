@@ -3,7 +3,7 @@
 
 {% block body %}
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).on('click','.delete-company',function(){
   var id = $(this).data('id');
 
@@ -23,7 +23,7 @@ $(document).on('click','.delete-company',function(){
       },
   });
 });
-</script>
+</script> -->
 
 <style>
 
@@ -73,63 +73,22 @@ $(document).on('click','.delete-company',function(){
     <div class="col-sm-3">
     </div>
     <div class="col-sm-6">
-      {% for item in object_list %}
-      <div class="card shadow p-3 bg-white rounded mb-5" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="{{item.imageURL}}" class="box-image" alt="image of the meal">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{item.name}}</h5>
-                <p class="card-text">{{item.description}}</p>
+      {% for product in products %}
 
-                <div class="card-footer">
-                  <a class="btn btn-outline-primary text-primary" data-toggle="modal" href="#{{item.id}}" data-target="#test">Place Order</a>
-                  <p style="display:inline-block;float:right">Price: ${{item.price|floatformat:2}}</p>
-                </div>
+      			<img class="thumbnail" src="{{product.imageURL}}">
+      			<div class="box-element product mb-5">
+      				<h4><strong>{{product.name}}</strong></h4>
+              <h6><strong>{{product.description}}</strong></h6>
+      				<hr>
 
-                <!-- Modal -->
-                <div class="modal fade" id="test" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">{{item.name}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <img src="{% static 'img/meal1.jpg' %}" class="card-img" alt="image of the meal">
-                        <p>Meal contains:</p>
-                        <p>{{item.description}}</p>
-                        <div class="input-group mt-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">
-                          <input type="checkbox" aria-label="Checkbox for following text input">
-                           Add substitute + $2.00
-                          </div>
-                        </div>
-                      </div>
-                      <br>
-                      <input type="text" name="" value="" placeholder="Add substitution Details">
-                      {% if item.add_on %}
-                      <h3 style="display:inline-block;float:left"> {{ item.price_ttc|floatformat:2 }}</h3>
-                      {% else %}
-                      <h3 style="display:inline-block;float:left">Total: ${{item.price|floatformat:2}}</h3>
-                      {% endif %}
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <a type="button" href="#" class="btn btn-primary">Add to Cart</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+
+      				<a class="btn btn-outline-success" href="{% url 'products:product_detail' product.id %}">View</a>
+      				<h4 style="display: inline-block; float: right"><strong>${{product.price|floatformat:2}}</strong></h4>
+
+      			</div>
+
+
       {% endfor %}
     </div>
     <div class="col-sm-3">
@@ -137,39 +96,6 @@ $(document).on('click','.delete-company',function(){
     </div>
   </div>
 </div>
-
-<h1 class="text-center">VEGETARIAN OPTION</h1>
-{% for item in object_list %}
-{% if item.name == 'VEGETARIAN OPTION' %}
-<div class="container mb-5">
-  <div class="row">
-    <div class="col-sm-3">
-    </div>
-    <div class="col-sm-6">
-      <div class="card shadow p-3 bg-white rounded" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="{% static 'img/meal2.jpg'%}" class="card-img" alt="Second meal">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Vegetarian Option 1</h5>
-              <p class="card-text">MASHED CALIFLOWER W/ GARLIC GREENBEANS & ACORN SQUASH</p>
-              <a class="btn btn-primary text-white">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-
-    </div>
-  </div>
-</div>
-
-<!-- <h2 class="text-center mt-3 mb-5">No Vegetarian Meals at this time.</h2> -->
-{% endif %}
-{% endfor %}
 
 <!-- About Us -->
 <section id="about" class="shadow pb-1 bg-dark rounded">

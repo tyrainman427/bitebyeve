@@ -1,12 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-
+from .utils import cookieCart, cartData, guestOrder
 from .models import Product, Customer
 
 
 # Create your views here.
 def index(request):
-    return render(request,'menu/index.html',{})
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    products = Product.objects.all()
+    context = {'products':products, 'cartItems':cartItems}
+    return render(request,'product/product_list.html',context)
 
 # Product views
 class ProductDetailView(DetailView):
@@ -17,15 +25,15 @@ class ProductDetailView(DetailView):
         id_ = self.kwargs.get("id")
         return get_object_or_404(Product, id=id_)
 
-class ProductListView(ListView):
-    model = Product
-    queryset = Product.objects.all()
-    template_name = "product/product_list.html"
+# class ProductListView(ListView):
+#     model = Product
+#     queryset = Product.objects.all()
+#     template_name = "product/product_list.html"
 
 class ProductCreateView(CreateView):
     model = Product
     template_name = "product/product_create.html"
-    fields = ['name','description','price','photo']
+    fields = ['name','description','price','add_on','photo']
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
