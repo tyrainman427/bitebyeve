@@ -186,13 +186,22 @@
         <hr>
         {% for item in items %}
         <div class="cart-row">
-          <div style="flex:2"><p>{{item.imageURL}}</p></div>
+          <div style="flex:2"><p>{{item.product.imageURL}}</p></div>
           <div style="flex:2"><p>{{item.product.name}}</p></div>
           <div style="flex:1"><p>{{item.product.price|floatformat:2}}</p></div>
           <div style="flex:1"><p>{{item.quantity}}</p></div>
         </div>
         {% endfor %}
+
+				<select class="mb-2" name="delivery">
+					<option value="Delivery">Delivery</option>
+					<option value="Pick Up">Pick Up</option>
+				</select>
+
         <h5>Items:  {{order.get_cart_item}}</h5>
+				{% if item.add_on %}
+				<h5>Delivery: $5.00</h5>
+				{% endif%}
         <h5>Total:  ${{order.get_cart_total|floatformat:2}}</h5>
       </div>
     </div>
