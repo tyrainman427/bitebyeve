@@ -4,21 +4,35 @@ from product.models import *
 from product.utils import cookieCart, cartData, guestOrder
 from django.http import JsonResponse
 import json
+import datetime
 
 
 def cart(request):
-    data = cartData(request)
+    if request.user.is_authenticated:
+        data = cartData(request)
 
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
+        cartItems = data['cartItems']
+        order = data['order']
+        items = data['items']
+
+    else:
+        cookieData = cookieCart(request)
+        cartItems = cookieData['cartItems']
+        order = cookieData['order']
+        items = cookieData['items']
+        # guestOrder(request,data)
 
     context = {'items':items, 'order':order, 'cartItems':cartItems}
     return render(request, "cart/cart.html",context)
 
+from django.views.decorators.csrf import csrf_exempt
+
+
 def checkout(request):
     data = cartData(request)
     product = Product.objects.all()
+    order = Order.objects.filter(shipping__startswith='Pick Up')
+    print('Order-info',order)
 
     cartItems = data['cartItems']
     order = data['order']
@@ -58,6 +72,7 @@ def updateItem(request):
 
     return JsonResponse('Item was added', safe=False)
 
+@csrf_exempt
 def processOrder(request):
 	transaction_id = datetime.datetime.now().timestamp()
 	data = json.loads(request.body)
@@ -75,7 +90,7 @@ def processOrder(request):
 		order.complete = True
 	order.save()
 
-	if order.shipping == True:
+	if order.shipping == "True":
 		ShippingAddress.objects.create(
 		customer=customer,
 		order=order,

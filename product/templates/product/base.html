@@ -86,7 +86,7 @@
         <a class="nav-link text-light" href="#">Login</a>
       </li>
       <li class="nav-item">
-        <a href="/cart/" type="button"><i class="nav-link text-light fas fa-shopping-cart"><span class="badge badge-danger">{{cartItems}}</span></i></a>
+        <a href="{% url 'cart:cart' %}" type="button"><i class="nav-link text-light fas fa-shopping-cart"><span class="badge badge-danger">{{cartItems}}</span></i></a>
       </li>
     </ul>
   </div>
