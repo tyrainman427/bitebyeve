@@ -14,15 +14,15 @@ def index(request):
 
     products = Product.objects.all()
     context = {'products':products, 'cartItems':cartItems}
-    
+
     return render(request,'product/product_list.html',context)
 
 def customer_view(request, pk):
-    customer = Customer.objects.get(id=pk)
-    orders = customer.order.orderItem.all()
-    order_count = orders.count()
+    customer = Customer.objects.filter(user=request.user).first()
+    my_order = Order.objects.all()
+    orders = Order.customer.filter(complete=True)
+    order_count = my_order.count()
     context = {'customer':customer, 'orders':orders,'order_count':order_count}
-    print("Hello")
     return render(request, 'product/customer.html',context)
 
 # Product views
