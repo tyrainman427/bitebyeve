@@ -5,6 +5,9 @@ body{
 h1,h2,h3,h4,h5,h6{
 	color:hsl(0, 0%, 30%);
 }
+.marginTop {
+	margin-top: 3rem;
+}
 
 .box-element{
 	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
@@ -23,6 +26,10 @@ h1,h2,h3,h4,h5,h6{
 
 .product{
 	border-radius: 0 0 4px 4px;
+}
+.dash {
+	margin-top: 100px;
+	text-align: center;
 }
 
 .bg-dark{

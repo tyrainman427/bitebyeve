@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from .utils import cookieCart, cartData, guestOrder
-from .models import Product, Customer
+from .models import *
 
 
 # Create your views here.
@@ -14,7 +14,16 @@ def index(request):
 
     products = Product.objects.all()
     context = {'products':products, 'cartItems':cartItems}
+    
     return render(request,'product/product_list.html',context)
+
+def customer_view(request, pk):
+    customer = Customer.objects.get(id=pk)
+    orders = customer.order.orderItem.all()
+    order_count = orders.count()
+    context = {'customer':customer, 'orders':orders,'order_count':order_count}
+    print("Hello")
+    return render(request, 'product/customer.html',context)
 
 # Product views
 class ProductDetailView(DetailView):
@@ -49,17 +58,17 @@ class ProductDeleteView(DeleteView):
 
 
 # UserProfile views
-class CustomerDetailView(DetailView):
-    model = Customer
-    template_name = "product/userprofile_detail.html"
-
-    def get_object(self):
-        id_ = self.kwargs.get("id")
-        return get_object_or_404(Customer, id=id_)
+# class CustomerDetailView(DetailView):
+#     model = Customer
+#     template_name = "product/customer.html"
+#
+#     def get_object(self):
+#         id_ = self.kwargs.get("id")
+#         return get_object_or_404(Customer, id=id_)
 
 class CustomerListView(ListView):
     model = Customer
-    template_name = "product/userprofile_list.html"
+    template_name = "product/customer_list.html"
 
 class CustomerCreateView(CreateView):
     model = Customer

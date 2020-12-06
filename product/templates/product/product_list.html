@@ -75,11 +75,11 @@ $(document).on('click','.delete-company',function(){
     <div class="col-sm-6">
       {% for product in products %}
 
-      			<img class="thumbnail" src="{{product.imageURL}}">
+
       			<div class="box-element product mb-5">
+              <img class="thumbnail" src="{{product.imageURL}}">
       				<h4><strong>{{product.name}}</strong></h4>
               <h6><strong>{{product.description}}</strong></h6>
-              <h6>{{product.add_on}}</h6>
       				<hr>
 
       				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
@@ -101,7 +101,7 @@ $(document).on('click','.delete-company',function(){
 <!-- About Us -->
 <section id="about" class="shadow pb-1 bg-dark text-white rounded">
   <div class="container">
-    <h1 class="text-center mt-5">WHOLE 30 MENU</h1>
+    <h1 class="text-center text-white mt-5">WHOLE 30 MENU</h1>
     <br>
     <h3 class="text-center">PRICE PER MEAL $10.00 * Includes containers</h3>
     <br>

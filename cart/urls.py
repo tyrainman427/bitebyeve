@@ -10,6 +10,9 @@ urlpatterns = [
     path('checkout/', checkout, name='checkout'),
     path('update_item/', updateItem, name='update_item'),
     path('process_order/', processOrder, name="process_order"),
+    path('dashboard/', dashboard, name="dashboard"),
+    path('customer/<str:id>', customer_details, name="customer-detail"),
+
 
     # path('<int:pk>/cart/', ListCart, name='list-carts'),
     # path('cart/<int:pk>/', DetailCart.as_view(), name='detail-cart'),

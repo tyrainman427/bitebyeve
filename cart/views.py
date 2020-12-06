@@ -3,46 +3,52 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 from product.models import *
 from product.utils import cookieCart, cartData, guestOrder
 from django.http import JsonResponse
+from .forms import DeliveryForm
 import json
 import datetime
 
+def dashboard(request):
+    orders = Order.objects.all().order_by('-date_ordered')
+    pickup_order = orders.filter(complete=True).filter(shipping=False)
+    delivery_order = orders.filter(complete=True).filter(shipping=True)
+    pending_order = orders.filter(status='Pending')
+
+    context = {
+        'orders':orders,'pickup_order':pickup_order,
+        'delivery_order':delivery_order,'pending_order':pending_order,
+    }
+    return render(request, "cart/dashboard.html",context)
 
 def cart(request):
-    if request.user.is_authenticated:
-        data = cartData(request)
+	data = cartData(request)
 
-        cartItems = data['cartItems']
-        order = data['order']
-        items = data['items']
+	cartItems = data['cartItems']
+	order = data['order']
+	items = data['items']
 
-    else:
-        cookieData = cookieCart(request)
-        cartItems = cookieData['cartItems']
-        order = cookieData['order']
-        items = cookieData['items']
-        # guestOrder(request,data)
-
-    context = {'items':items, 'order':order, 'cartItems':cartItems}
-    return render(request, "cart/cart.html",context)
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	return render(request, 'cart/cart.html', context)
 
 from django.views.decorators.csrf import csrf_exempt
 
 
 def checkout(request):
     data = cartData(request)
-    product = Product.objects.all()
-    order = Order.objects.filter(shipping__startswith='Pick Up')
-    print('Order-info',order)
 
     cartItems = data['cartItems']
     order = data['order']
     items = data['items']
 
-    context = {'items':items, 'order':order, 'cartItems':cartItems,
-        'product':product
-    }
-    return render(request, "cart/checkout.html",context)
 
+    context = {'items':items, 'order':order, 'cartItems':cartItems}
+
+    return render(request, 'cart/checkout.html',context)
+
+
+def customer_details(request,id):
+    customer = Customer.objects.get(id=id)
+    context = {'customer':customer}
+    return render(request, 'product/customer.html',context)
 
 def updateItem(request):
     data = json.loads(request.body)
@@ -90,7 +96,7 @@ def processOrder(request):
 		order.complete = True
 	order.save()
 
-	if order.shipping == "True":
+	if order.shipping == False:
 		ShippingAddress.objects.create(
 		customer=customer,
 		order=order,

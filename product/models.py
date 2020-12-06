@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from datetime import datetime
 
-DELIVERY = (
-    ('Pick Up','Pick Up'),
-    ('Delivery','Delivery'),
-)
+# DELIVERY = (
+#     (False,'Pick Up'),
+#     (True,'Delivery'),
+# )
 
 MENU = (
     ('Meal 1','Meal 1'),
@@ -15,6 +15,7 @@ MENU = (
     ('Meal 3','Meal 3'),
     ('Meal 4','Meal 4'),
     ('VEGETARIAN OPTION','VEGETARIAN OPTION'),
+    ('Sauce','Sauce')
 )
 
 class Customer(models.Model):
@@ -27,17 +28,20 @@ class Customer(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("profile_detail", kwargs={"pk": self.pk})
+        return reverse("customer-details", kwargs={"pk": self.pk})
 
 class Product(models.Model):
-    """ This the default Product class """
+    CATEGORY = (
+        ('Meal','Meal'),('Vegetarian','Vegetarian'),('Sauces','Sauces'),
+    )
     name = models.CharField(max_length=50,choices=MENU, blank=True, null=True)
+    category = models.CharField(max_length=50,choices=CATEGORY, blank=True, null=True)
     description = models.TextField(max_length=100)
     photo = models.FileField()
     price = models.DecimalField(max_digits=5,decimal_places=2)
     created_at = models.DateTimeField(default=datetime.now)
     add_on = models.BooleanField(default=False)
-    addOn_details = models.CharField(max_length=200, blank=True, null=True)
+    add_details = models.CharField(max_length=200, blank=True, null=True)
 
     ADDON_AMOUNT = 2.00
 
@@ -59,24 +63,28 @@ class Product(models.Model):
         return reverse("products:product_detail", kwargs={"pk": self.pk})
 
 class Order(models.Model):
+    STATUS = (
+        ('Created','Created'),('Pending','Pending'),('Out For Delivery','Out For Delivery'),
+        ('Ready For Pick Up','Ready For Pick Up')
+    )
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True,blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
-    shipping = models.CharField(max_length=50,choices=DELIVERY,default='Pick Up')
-    pickup = models.BooleanField(default=False)
+    shipping = models.BooleanField(default=False)  #CharField(max_length=50,choices=DELIVERY, blank=True, null=True)
     complete = models.BooleanField(default=False)
+    status = models.CharField(max_length=20,default="Created",choices=STATUS)
     transaction_id = models.IntegerField(null=True,blank=True)
 
     def __str__(self):
         return str(self.id)
 
-    @property
-    def shipping(self):
-        pickup = False
-        orderitems = self.orderitem_set.all()
-        # for i in order.shipping:
-        #     print(i)
-        #     pickup = True
-        #     return pickup
+    # @property
+    # def shipping(self):
+    #     shipping = False
+    #     orderitems = self.orderitem_set.all()
+    #     for i in order.shipping:
+    #         print(i)
+    #         pickup = True
+    #         return pickup
 
     @property
     def get_cart_total(self):

@@ -18,9 +18,14 @@ def cookieCart(request):
 		#We use try block to prevent items in cart that may have been removed from causing error
 		try:
 			cartItems += cart[i]['quantity']
-
+			add_on = False
 			product = Product.objects.get(id=i)
-			total = (product.price * cart[i]['quantity'])
+			if add_on:
+				for item in len(product.add_on):
+					add_on_price = item * product.price_ttc()
+					total = (product.price * cart[i]['quantity']) + add_on_price
+			else:
+				total = (product.price * cart[i]['quantity'])
 
 			order['get_cart_total'] += total
 			order['get_cart_item'] += cart[i]['quantity']

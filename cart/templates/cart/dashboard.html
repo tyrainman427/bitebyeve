@@ -1,0 +1,101 @@
+{% extends 'product/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container mb-5">
+  <div class="row dash">
+    <div class="col-md-3">
+
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header">Pending Orders</div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    {% if pending_order %}
+    <p class="card-text" style="font-size:4rem;">{{pending_order.count}}</p>
+    {% else %}
+    <p class="card-text" style="font-size:4rem;">0</p>
+    {% endif %}
+  </div>
+</div>
+    </div>
+    <div class="col-md-3">
+
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header">Total Orders</div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    {% if orders %}
+    <p class="card-text" style="font-size:4rem;">{{orders.count}}</p>
+    {% else %}
+    <p class="card-text" style="font-size:4rem;">0</p>
+    {% endif %}
+  </div>
+</div>
+    </div>
+    <div class="col-md-3">
+
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header">Pick Up Orders</div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text" style="font-size:4rem;">{{pickup_order.count}}</p>
+  </div>
+</div>
+    </div>
+    <div class="col-md-3">
+
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header">Delivery Orders</div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text" style="font-size:4rem;">{{delivery_order.count}}</p>
+  </div>
+</div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-7">
+      <h1>Orders:</h1>
+      <table class="table table-hover table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Transaction ID</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Date Ordered</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for ord in orders %}
+      <tr>
+        <th scope="row"><input type="checkbox" class="form-check-input" id="exampleCheck1">{{ord.transaction_id}}</th>
+        <td><a href="{% url 'cart:customer-detail' ord.customer.id %}">{{ord.customer}}</a></td>
+        <td>{{ord.date_ordered}}</td>
+        <td>{{ord.status}}</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+    </div>
+    <div class="col-md-4">
+      <h1>Order Types:</h1>
+      <ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Meal 1
+    <span class="badge badge-primary badge-pill">14</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Vegetarian
+    <span class="badge badge-primary badge-pill">2</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Sauce
+    <span class="badge badge-primary badge-pill">1</span>
+  </li>
+</ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
