@@ -1,8 +1,11 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save
 from django.conf import settings
 from datetime import datetime
+
+User = get_user_model()
 
 # DELIVERY = (
 #     (False,'Pick Up'),
@@ -29,6 +32,12 @@ class Customer(models.Model):
 
     def get_absolute_url(self):
         return reverse("customer-details", kwargs={"pk": self.pk})
+
+def post_save_customer_create(sender,instance,created,*args, **kwargs):
+    if created:
+        Customer.objects.get_or_create(user=instance)
+
+post_save.connect(post_save_customer_create,sender=settings.AUTH_USER_MODEL)
 
 class Product(models.Model):
     CATEGORY = (
